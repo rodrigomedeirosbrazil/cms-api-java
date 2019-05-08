@@ -3,8 +3,7 @@ CREATE TABLE `usuario` (
   `email` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `cnpj` varchar(255) NOT NULL,
-  `update_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -21,7 +20,7 @@ CREATE TABLE `cliente` (
   `cidade` varchar(255) NOT NULL,
   `uf` varchar(255) NOT NULL,
   -- `empresa_id` bigint(20) DEFAULT NULL
-  `update_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
   `created_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

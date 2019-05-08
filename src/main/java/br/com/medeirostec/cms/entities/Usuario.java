@@ -13,7 +13,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -56,7 +56,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 	
-	@Column(name = "createdAt", nullable = false)
+	@Column(name = "created_at", nullable = false)
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -65,7 +65,7 @@ public class Usuario implements Serializable {
 		this.createdAt = createdAt;
 	}
 
-	@Column(name = "updatedAt", nullable = false)
+	@Column(name = "updated_at", nullable = false)
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
