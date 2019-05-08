@@ -1,4 +1,4 @@
-package br.com.medeirostec.cmd.entities;
+package br.com.medeirostec.cms.entities;
 
 import java.io.Serializable;
 import java.util.Date;
