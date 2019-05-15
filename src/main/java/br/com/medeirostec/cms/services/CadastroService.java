@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import br.com.medeirostec.cms.entities.Usuario;
 
-public interface UsuarioService {
+public interface CadastroService {
 	
 	/**
 	 * Persiste um usuário na base de dados.

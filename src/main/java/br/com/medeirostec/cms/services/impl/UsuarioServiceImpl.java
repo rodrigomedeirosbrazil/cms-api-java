@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import br.com.medeirostec.cms.entities.Usuario;
 import br.com.medeirostec.cms.repositories.UsuarioRepository;
-import br.com.medeirostec.cms.services.UsuarioService;
+import br.com.medeirostec.cms.services.CadastroService;
 
 @Service
-public class UsuarioServiceImpl implements UsuarioService {
+public class UsuarioServiceImpl implements CadastroService {
 	
 	private static final Logger log = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
