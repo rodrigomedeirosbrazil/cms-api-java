@@ -52,7 +52,7 @@ public class CadastroControllerTest {
 		BDDMockito.given(this.usuarioService.persistir(Mockito.any(Usuario.class))).willReturn(usuario);
 
 		mvc.perform(MockMvcRequestBuilders.post(URL_BASE)
-				.content(this.obterJsonRequisicaoPost())
+				.content(this.obterJsonRequisicaoPost(NOME, EMAIL, SENHA))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
@@ -67,7 +67,7 @@ public class CadastroControllerTest {
 		BDDMockito.given(this.usuarioService.buscarPorId(Mockito.anyLong())).willReturn(Optional.empty());
 
 		mvc.perform(MockMvcRequestBuilders.post(URL_BASE)
-				.content(this.obterJsonRequisicaoPostEmailInvalido())
+				.content(this.obterJsonRequisicaoPost(NOME, "asdasd@", SENHA))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest())
@@ -81,7 +81,7 @@ public class CadastroControllerTest {
 		BDDMockito.given(this.usuarioService.buscarPorId(Mockito.anyLong())).willReturn(Optional.empty());
 
 		mvc.perform(MockMvcRequestBuilders.post(URL_BASE)
-				.content(this.obterJsonRequisicaoPostSemSenha())
+				.content(this.obterJsonRequisicaoPost(NOME, EMAIL, null))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest())
@@ -95,7 +95,7 @@ public class CadastroControllerTest {
 		BDDMockito.given(this.usuarioService.buscarPorId(Mockito.anyLong())).willReturn(Optional.empty());
 
 		mvc.perform(MockMvcRequestBuilders.post(URL_BASE)
-				.content(this.obterJsonRequisicaoPostSemNome())
+				.content(this.obterJsonRequisicaoPost(null, EMAIL, SENHA))
 				.contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest())
@@ -111,42 +111,13 @@ public class CadastroControllerTest {
 		return usuario;
 	}
 
-	private String obterJsonRequisicaoPost() throws JsonProcessingException {
+	private String obterJsonRequisicaoPost(String nome, String email, String senha) throws JsonProcessingException {
 		CadastroDto cadastroDto = new CadastroDto();
 		cadastroDto.setId(null);
-		cadastroDto.setNome(NOME);
-		cadastroDto.setEmail(EMAIL);
-		cadastroDto.setSenha(SENHA);
+		cadastroDto.setNome(nome);
+		cadastroDto.setEmail(email);
+		cadastroDto.setSenha(senha);
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(cadastroDto);
 	}
-	
-	private String obterJsonRequisicaoPostEmailInvalido() throws JsonProcessingException {
-		CadastroDto cadastroDto = new CadastroDto();
-		cadastroDto.setId(null);
-		cadastroDto.setNome(NOME);
-		cadastroDto.setEmail("asd123@");
-		cadastroDto.setSenha(SENHA);
-		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(cadastroDto);
-	}
-
-	private String obterJsonRequisicaoPostSemSenha() throws JsonProcessingException {
-		CadastroDto cadastroDto = new CadastroDto();
-		cadastroDto.setId(null);
-		cadastroDto.setNome(NOME);
-		cadastroDto.setEmail(EMAIL);
-		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(cadastroDto);
-	}
-	
-	private String obterJsonRequisicaoPostSemNome() throws JsonProcessingException {
-		CadastroDto cadastroDto = new CadastroDto();
-		cadastroDto.setId(null);
-		cadastroDto.setEmail(EMAIL);
-		cadastroDto.setSenha(SENHA);
-		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(cadastroDto);
-	}
-
 }
