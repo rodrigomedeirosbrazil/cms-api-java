@@ -28,7 +28,7 @@ public class UsuarioServiceTest {
 	private UsuarioRepository usuarioRepository;
 
 	@Autowired
-	private CadastroService cadastroService;
+	private UsuarioService usuarioService;
 
 	@Before
 	public void setUp() throws Exception {
@@ -39,21 +39,21 @@ public class UsuarioServiceTest {
 
 	@Test
 	public void testPersistirUsuario() {
-		Usuario usuario = this.cadastroService.persistir(new Usuario());
+		Usuario usuario = this.usuarioService.persistir(new Usuario());
 
 		assertNotNull(usuario);
 	}
 
 	@Test
 	public void testBuscarUsuarioPorId() {
-		Optional<Usuario> usuario = this.cadastroService.buscarPorId(1L);
+		Optional<Usuario> usuario = this.usuarioService.buscarPorId(1L);
 
 		assertTrue(usuario.isPresent());
 	}
 
 	@Test
 	public void testBuscarUsuarioPorEmail() {
-		Optional<Usuario> usuario = this.cadastroService.buscarPorEmail("email@email.com");
+		Optional<Usuario> usuario = this.usuarioService.buscarPorEmail("email@email.com");
 
 		assertTrue(usuario.isPresent());
 	}

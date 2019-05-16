@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 
 import br.com.medeirostec.cms.entities.Usuario;
 import br.com.medeirostec.cms.security.JwtUserFactory;
-import br.com.medeirostec.cms.services.CadastroService;
+import br.com.medeirostec.cms.services.UsuarioService;
 
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private CadastroService cadastroService;
+	private UsuarioService usuarioService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Usuario> usuario = cadastroService.buscarPorEmail(username);
+		Optional<Usuario> usuario = usuarioService.buscarPorEmail(username);
 
 		if (usuario.isPresent()) {
 			return JwtUserFactory.create(usuario.get());

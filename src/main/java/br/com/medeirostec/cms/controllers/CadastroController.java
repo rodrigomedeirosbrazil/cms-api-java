@@ -1,8 +1,6 @@
 package br.com.medeirostec.cms.controllers;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.Optional;
-
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.medeirostec.cms.dtos.CadastroDto;
 import br.com.medeirostec.cms.entities.Usuario;
 import br.com.medeirostec.cms.response.Response;
-import br.com.medeirostec.cms.services.CadastroService;
+import br.com.medeirostec.cms.services.UsuarioService;
 import br.com.medeirostec.cms.utils.PasswordUtils;
 
 
@@ -32,7 +30,7 @@ public class CadastroController {
 	private static final Logger log = LoggerFactory.getLogger(CadastroController.class);
 
 	@Autowired
-	private CadastroService cadastroService;
+	private UsuarioService usuarioService;
 
 	public CadastroController() {
 	}
@@ -60,7 +58,7 @@ public class CadastroController {
 			return ResponseEntity.badRequest().body(response);
 		}
 		
-		this.cadastroService.persistir(usuario);
+		this.usuarioService.persistir(usuario);
 
 		response.setData(this.converterCadastroDto(usuario));
 		return ResponseEntity.ok(response);
@@ -73,7 +71,7 @@ public class CadastroController {
 	 * @param result
 	 */
 	private void validarDadosExistentes(CadastroDto cadastroDto, BindingResult result) {
-		this.cadastroService.buscarPorEmail(cadastroDto.getEmail())
+		this.usuarioService.buscarPorEmail(cadastroDto.getEmail())
 			.ifPresent(func -> result.addError(new ObjectError("usuario", "Email já existente.")));
 	}
 	

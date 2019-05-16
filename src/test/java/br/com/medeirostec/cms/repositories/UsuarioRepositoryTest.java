@@ -1,7 +1,6 @@
 package br.com.medeirostec.cms.repositories;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.security.NoSuchAlgorithmException;
 
